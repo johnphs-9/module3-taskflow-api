@@ -196,9 +196,8 @@ public class TaskController {
      * <p>
      * Calculates task counts and completion percentage locally, then asks the
      * configured model for an HTML progress overview and unfinished-work list.
-     * Pending tasks are ordered by creation time, oldest first, with their age
-     * since creation. This suggests review order, not business priority or overdue
-     * status. Missing creation timestamps are labelled unknown and sorted last.
+     * Task IDs identify unfinished work. No age, deadline, or priority is inferred
+     * because task records do not contain that information.
      * Returns an empty-state summary without calling the model when no tasks exist.
      * The generated HTML and adherence to the requested structure are not
      * validated.
@@ -261,8 +260,9 @@ public class TaskController {
                         is complete and what topics remain, grounded in the task titles.</p>
                         <h3>Summary stats</h3><p>Copy the verified summary stats exactly.</p>
                         <h3>Unfinished work</h3><ul>One <li> per pending task, including its ID
-                        and a concise description of the remaining work, plus its supplied age
-                        since creation. Include every pending task once, and no completed tasks.
+                        and a concise description of the remaining work.
+                        Include every pending task once, and no completed tasks.
+                        Do not infer task ages or rank tasks by priority.
                         </ul>
                         If nothing is pending, replace the list with <p>All tasks are complete.</p>.
                         Do not list completed tasks separately. Escape task text for HTML.

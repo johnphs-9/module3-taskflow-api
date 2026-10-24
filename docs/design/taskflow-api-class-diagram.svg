@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1600 1120"
+   width="1600"
+   height="1120"
+   role="img"
+   aria-labelledby="t2 d2"
+   version="1.1"
+   id="svg79"
+   sodipodi:docname="taskflow-api-class-diagram.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview79"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.156875"
+     inkscape:cx="800"
+     inkscape:cy="214.37061"
+     inkscape:window-width="2382"
+     inkscape:window-height="1191"
+     inkscape:window-x="139"
+     inkscape:window-y="51"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg79" />
+  <title
+     id="t2">TaskFlow API — class diagram</title>
+  <desc
+     id="d2">UML-style class diagram of the seven project classes plus the external Spring AI ChatClient. TaskController depends on TaskService and ChatClient; TaskService depends on TaskRepository and Task; TaskRepository stores Task; GlobalExceptionHandler maps TaskNotFoundException to 404, validation errors to 400 and other exceptions to 500, returning ErrorResponse. TaskflowApiApplication boots the Spring context.</desc>
+  <defs
+     id="defs1">
+    <marker
+       id="ahO2"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="8"
+       markerHeight="8"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 0 L 10 5 L 0 10"
+         fill="none"
+         stroke="#1B211F"
+         stroke-width="1.6"
+         id="path1" />
+    </marker>
+  </defs>
+  <style
+     id="style1">
+    text{font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;fill:#1B211F}
+    .m{font-family:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace}
+    .ln{stroke:#1B211F;fill:none}
+  </style>
+  <!-- page -->
+  <rect
+     x="0"
+     y="0"
+     width="1600"
+     height="1120"
+     fill="#FFFEFD"
+     id="rect1" />
+  <rect
+     x="0"
+     y="0"
+     width="14"
+     height="1120"
+     fill="#EDB86C"
+     id="rect2" />
+  <!-- header -->
+  <text
+     x="48"
+     y="56"
+     font-size="26"
+     font-weight="600"
+     id="text2">TaskFlow API — class diagram</text>
+  <text
+     x="48"
+     y="84"
+     font-size="13"
+     id="text3">Package sg.edu.ntu.taskflow_api · Lombok-generated accessors omitted · ChatClient is external (Spring AI 2.0)</text>
+  <text
+     x="1552"
+     y="56"
+     font-size="12px"
+     text-anchor="end"
+     id="text4">NTU AI Engineering · AIE-FT-03-Back End Development: Server-Side Programming</text>
+  <line
+     x1="48"
+     y1="104"
+     x2="1552"
+     y2="104"
+     class="ln"
+     stroke-width="1"
+     id="line4" />
+  <!-- ===== Task ===== -->
+  <rect
+     x="60"
+     y="130"
+     width="280"
+     height="160"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect4" />
+  <text
+     x="76"
+     y="154"
+     font-size="14"
+     font-weight="600"
+     id="text5">Task</text>
+  <text
+     x="76"
+     y="172"
+     font-size="10.5"
+     class="m"
+     id="text6">@Data · @JsonPropertyOrder</text>
+  <line
+     x1="60"
+     y1="182"
+     x2="340"
+     y2="182"
+     class="ln"
+     stroke-width="1"
+     id="line6" />
+  <text
+     x="76"
+     y="202"
+     font-size="11"
+     class="m"
+     id="text7">- id: Long</text>
+  <text
+     x="76"
+     y="222"
+     font-size="11"
+     class="m"
+     id="text8">- title: String   @NotBlank</text>
+  <text
+     x="76"
+     y="242"
+     font-size="11"
+     class="m"
+     id="text9">- completed: boolean</text>
+  <line
+     x1="60"
+     y1="252"
+     x2="340"
+     y2="252"
+     class="ln"
+     stroke-width="1"
+     id="line9" />
+  <text
+     x="76"
+     y="270"
+     font-size="10.5"
+     id="text10">getters / setters (Lombok)</text>
+  <!-- ===== TaskController ===== -->
+  <rect
+     x="560"
+     y="130"
+     width="340"
+     height="280"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect10" />
+  <text
+     x="576"
+     y="154"
+     font-size="14"
+     font-weight="600"
+     id="text11">TaskController</text>
+  <text
+     x="576"
+     y="172"
+     font-size="10.5"
+     class="m"
+     id="text12">@RestController · /api/tasks</text>
+  <line
+     x1="560"
+     y1="182"
+     x2="900"
+     y2="182"
+     class="ln"
+     stroke-width="1"
+     id="line12" />
+  <text
+     x="576"
+     y="202"
+     font-size="11"
+     class="m"
+     id="text13">- taskService: TaskService</text>
+  <text
+     x="576"
+     y="222"
+     font-size="11"
+     class="m"
+     id="text14">- chatClient: ChatClient</text>
+  <line
+     x1="560"
+     y1="232"
+     x2="900"
+     y2="232"
+     class="ln"
+     stroke-width="1"
+     id="line14" />
+  <text
+     x="576"
+     y="252"
+     font-size="11"
+     class="m"
+     id="text15">addDummyData() → 201</text>
+  <text
+     x="576"
+     y="272"
+     font-size="11"
+     class="m"
+     id="text16">findAllTasks() → 200</text>
+  <text
+     x="576"
+     y="292"
+     font-size="11"
+     class="m"
+     id="text17">findTaskById(id) → 200 | 404</text>
+  <text
+     x="576"
+     y="312"
+     font-size="11"
+     class="m"
+     id="text18">createTask(task) → 201</text>
+  <text
+     x="576"
+     y="332"
+     font-size="11"
+     class="m"
+     id="text19">updateTask(id, task) → 200 | 404</text>
+  <text
+     x="576"
+     y="352"
+     font-size="11"
+     class="m"
+     id="text20">deleteTask(id) → 200 | 404</text>
+  <text
+     x="576"
+     y="372"
+     font-size="11"
+     class="m"
+     id="text21">markTaskAsComplete(id) → 200 | 404</text>
+  <text
+     x="576"
+     y="392"
+     font-size="11"
+     class="m"
+     id="text22">summarise() → HTML (unvalidated)</text>
+  <!-- ===== ChatClient (external) ===== -->
+  <rect
+     x="1120"
+     y="130"
+     width="320"
+     height="190"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     id="rect22" />
+  <text
+     x="1136"
+     y="154"
+     font-size="14"
+     font-weight="600"
+     id="text23">ChatClient</text>
+  <text
+     x="1136"
+     y="172"
+     font-size="10.5"
+     id="text24">Spring AI 2.0 — external library</text>
+  <line
+     x1="1120"
+     y1="182"
+     x2="1440"
+     y2="182"
+     class="ln"
+     stroke-width="1"
+     id="line24" />
+  <text
+     x="1136"
+     y="202"
+     font-size="11"
+     class="m"
+     id="text25">prompt(): RequestSpec</text>
+  <text
+     x="1136"
+     y="222"
+     font-size="11"
+     class="m"
+     id="text26">.system(text)</text>
+  <text
+     x="1136"
+     y="242"
+     font-size="11"
+     class="m"
+     id="text27">.user(text)</text>
+  <text
+     x="1136"
+     y="262"
+     font-size="11"
+     class="m"
+     id="text28">.call(): CallResponseSpec</text>
+  <text
+     x="1136"
+     y="282"
+     font-size="11"
+     class="m"
+     id="text29">.content(): String</text>
+  <line
+     x1="1120"
+     y1="292"
+     x2="1440"
+     y2="292"
+     class="ln"
+     stroke-width="1"
+     id="line29" />
+  <text
+     x="1136"
+     y="308"
+     font-size="10.5"
+     id="text30">built from injected ChatClient.Builder</text>
+  <!-- ===== TaskflowApiApplication ===== -->
+  <rect
+     x="60"
+     y="460"
+     width="280"
+     height="120"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect30" />
+  <text
+     x="76"
+     y="484"
+     font-size="13"
+     font-weight="600"
+     id="text31">TaskflowApiApplication</text>
+  <text
+     x="76"
+     y="502"
+     font-size="10.5"
+     class="m"
+     id="text32">@SpringBootApplication</text>
+  <line
+     x1="60"
+     y1="512"
+     x2="340"
+     y2="512"
+     class="ln"
+     stroke-width="1"
+     id="line32" />
+  <text
+     x="76"
+     y="532"
+     font-size="11"
+     class="m"
+     id="text33">+ main(String[]): void</text>
+  <line
+     x1="60"
+     y1="542"
+     x2="340"
+     y2="542"
+     class="ln"
+     stroke-width="1"
+     id="line33" />
+  <text
+     x="76"
+     y="560"
+     font-size="10.5"
+     id="text34">boots Spring context · :8080</text>
+  <!-- ===== TaskService ===== -->
+  <rect
+     x="560"
+     y="460"
+     width="340"
+     height="240"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect34" />
+  <text
+     x="576"
+     y="484"
+     font-size="14"
+     font-weight="600"
+     id="text35">TaskService</text>
+  <text
+     x="576"
+     y="502"
+     font-size="10.5"
+     class="m"
+     id="text36">@Service</text>
+  <line
+     x1="560"
+     y1="512"
+     x2="900"
+     y2="512"
+     class="ln"
+     stroke-width="1"
+     id="line36" />
+  <text
+     x="576"
+     y="532"
+     font-size="11"
+     class="m"
+     id="text37">- taskRepository: TaskRepository</text>
+  <line
+     x1="560"
+     y1="542"
+     x2="900"
+     y2="542"
+     class="ln"
+     stroke-width="1"
+     id="line37" />
+  <text
+     x="576"
+     y="562"
+     font-size="11"
+     class="m"
+     id="text38">addDummyData()</text>
+  <text
+     x="576"
+     y="582"
+     font-size="11"
+     class="m"
+     id="text39">findAllTasks(): List&lt;Task&gt;</text>
+  <text
+     x="576"
+     y="602"
+     font-size="11"
+     class="m"
+     id="text40">findTaskById(id): Optional&lt;Task&gt;</text>
+  <text
+     x="576"
+     y="622"
+     font-size="11"
+     class="m"
+     id="text41">createTask(task): Task</text>
+  <text
+     x="576"
+     y="642"
+     font-size="11"
+     class="m"
+     id="text42">updateTask(id, task): Task</text>
+  <text
+     x="576"
+     y="662"
+     font-size="11"
+     class="m"
+     id="text43">deleteTask(id): void</text>
+  <text
+     x="576"
+     y="682"
+     font-size="11"
+     class="m"
+     id="text44">markTaskAsComplete(id): Task</text>
+  <!-- ===== GlobalExceptionHandler ===== -->
+  <rect
+     x="1120"
+     y="460"
+     width="320"
+     height="150"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect44" />
+  <text
+     x="1136"
+     y="484"
+     font-size="13"
+     font-weight="600"
+     id="text45">GlobalExceptionHandler</text>
+  <text
+     x="1136"
+     y="502"
+     font-size="10.5"
+     class="m"
+     id="text46">@RestControllerAdvice</text>
+  <line
+     x1="1120"
+     y1="512"
+     x2="1440"
+     y2="512"
+     class="ln"
+     stroke-width="1"
+     id="line46" />
+  <text
+     x="1136"
+     y="532"
+     font-size="11"
+     class="m"
+     id="text47">handleTaskNotFoundException(ex) → 404</text>
+  <text
+     x="1136"
+     y="552"
+     font-size="11"
+     class="m"
+     id="text48">handleValidationExceptions(ex) → 400</text>
+  <text
+     x="1136"
+     y="572"
+     font-size="11"
+     class="m"
+     id="text49">handleException(ex) → 500</text>
+  <line
+     x1="1120"
+     y1="584"
+     x2="1440"
+     y2="584"
+     class="ln"
+     stroke-width="1"
+     id="line49" />
+  <text
+     x="1136"
+     y="600"
+     font-size="10.5"
+     id="text50">all return ResponseEntity&lt;ErrorResponse&gt;</text>
+  <!-- ===== TaskRepository ===== -->
+  <rect
+     x="560"
+     y="760"
+     width="340"
+     height="240"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect50" />
+  <text
+     x="576"
+     y="784"
+     font-size="14"
+     font-weight="600"
+     id="text51">TaskRepository</text>
+  <text
+     x="576"
+     y="802"
+     font-size="10.5"
+     class="m"
+     id="text52">@Repository · in-memory</text>
+  <line
+     x1="560"
+     y1="812"
+     x2="900"
+     y2="812"
+     class="ln"
+     stroke-width="1"
+     id="line52" />
+  <text
+     x="576"
+     y="832"
+     font-size="11"
+     class="m"
+     id="text53">- tasks: HashMap&lt;Long, Task&gt;</text>
+  <text
+     x="576"
+     y="852"
+     font-size="11"
+     class="m"
+     id="text54">- nextId: long   (starts at 1)</text>
+  <line
+     x1="560"
+     y1="862"
+     x2="900"
+     y2="862"
+     class="ln"
+     stroke-width="1"
+     id="line54" />
+  <text
+     x="576"
+     y="882"
+     font-size="11"
+     class="m"
+     id="text55">findAll(): List&lt;Task&gt;  [synchronized]</text>
+  <text
+     x="576"
+     y="902"
+     font-size="11"
+     class="m"
+     id="text56">findById(id): Optional&lt;Task&gt;</text>
+  <text
+     x="576"
+     y="922"
+     font-size="11"
+     class="m"
+     id="text57">create(task): Task</text>
+  <text
+     x="576"
+     y="942"
+     font-size="11"
+     class="m"
+     id="text58">save(task): Task</text>
+  <text
+     x="576"
+     y="962"
+     font-size="11"
+     class="m"
+     id="text59">deleteById(id): boolean</text>
+  <line
+     x1="560"
+     y1="972"
+     x2="900"
+     y2="972"
+     class="ln"
+     stroke-width="1"
+     id="line59" />
+  <text
+     x="576"
+     y="988"
+     font-size="10.5"
+     id="text60">volatile — lost on restart</text>
+  <!-- ===== ErrorResponse ===== -->
+  <rect
+     x="1120"
+     y="760"
+     width="320"
+     height="110"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect60" />
+  <text
+     x="1136"
+     y="784"
+     font-size="13"
+     font-weight="600"
+     id="text61">ErrorResponse</text>
+  <text
+     x="1136"
+     y="802"
+     font-size="10.5"
+     class="m"
+     id="text62">@Data</text>
+  <line
+     x1="1120"
+     y1="812"
+     x2="1440"
+     y2="812"
+     class="ln"
+     stroke-width="1"
+     id="line62" />
+  <text
+     x="1136"
+     y="832"
+     font-size="11"
+     class="m"
+     id="text63">- message: String</text>
+  <text
+     x="1136"
+     y="852"
+     font-size="11"
+     class="m"
+     id="text64">- timestamp: LocalDateTime</text>
+  <!-- ===== TaskNotFoundException ===== -->
+  <rect
+     x="1120"
+     y="890"
+     width="320"
+     height="130"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect64" />
+  <text
+     x="1136"
+     y="914"
+     font-size="13"
+     font-weight="600"
+     id="text65">TaskNotFoundException</text>
+  <text
+     x="1136"
+     y="932"
+     font-size="10.5"
+     id="text66">extends RuntimeException</text>
+  <line
+     x1="1120"
+     y1="942"
+     x2="1440"
+     y2="942"
+     class="ln"
+     stroke-width="1"
+     id="line66" />
+  <text
+     x="1136"
+     y="962"
+     font-size="11"
+     class="m"
+     id="text67">+ TaskNotFoundException(Long id)</text>
+  <line
+     x1="1120"
+     y1="972"
+     x2="1440"
+     y2="972"
+     class="ln"
+     stroke-width="1"
+     id="line67" />
+  <text
+     x="1136"
+     y="988"
+     font-size="10.5"
+     id="text68">message: “Task not found with ID: n.”</text>
+  <!-- ===== relationships ===== -->
+  <!-- controller -> service -->
+  <line
+     x1="730"
+     y1="410"
+     x2="730"
+     y2="460"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ahO2)"
+     id="line68" />
+  <text
+     x="740"
+     y="440"
+     font-size="11"
+     id="text69">delegates CRUD + summary read</text>
+  <!-- service -> repository -->
+  <line
+     x1="730"
+     y1="700"
+     x2="730"
+     y2="760"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ahO2)"
+     id="line69" />
+  <text
+     x="740"
+     y="735"
+     font-size="11"
+     id="text70">synchronized access</text>
+  <!-- controller -> chat client -->
+  <line
+     x1="900"
+     y1="190"
+     x2="1120"
+     y2="190"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ahO2)"
+     id="line70" />
+  <text
+     x="1010"
+     y="178"
+     font-size="11"
+     text-anchor="middle"
+     id="text71">injected · summary</text>
+  <!-- controller -> task -->
+  <line
+     x1="560"
+     y1="190"
+     x2="340"
+     y2="190"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ahO2)"
+     id="line71" />
+  <text
+     x="450"
+     y="178"
+     font-size="11"
+     text-anchor="middle"
+     id="text72">binds / returns</text>
+  <!-- service -> task (uses) -->
+  <path
+     d="M 560 520 L 470 520 L 470 220 L 340 220"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     marker-end="url(#ahO2)"
+     id="path72" />
+  <text
+     x="478"
+     y="360"
+     font-size="11"
+     id="text73">uses</text>
+  <!-- repository -> task (stores) -->
+  <path
+     d="M 560 890 L 430 890 L 430 260 L 340 260"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     marker-end="url(#ahO2)"
+     id="path73" />
+  <text
+     x="438"
+     y="600"
+     font-size="11"
+     id="text74">stores</text>
+  <!-- handler -> error response (creates) -->
+  <line
+     x1="1200"
+     y1="610"
+     x2="1200"
+     y2="760"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     marker-end="url(#ahO2)"
+     id="line74" />
+  <text
+     x="1210"
+     y="685"
+     font-size="11"
+     id="text75">creates</text>
+  <!-- handler -> task not found (handles) -->
+  <path
+     d="M 1440 580 L 1490 580 L 1490 955 L 1440 955"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     marker-end="url(#ahO2)"
+     id="path75" />
+  <text
+     x="1498"
+     y="740"
+     font-size="10.5"
+     id="text76">handles → 404</text>
+  <!-- service -> task not found (throws) -->
+  <path
+     d="M 900 660 L 1010 660 L 1010 955 L 1120 955"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     marker-end="url(#ahO2)"
+     id="path76" />
+  <text
+     x="1018"
+     y="840"
+     font-size="11"
+     id="text77">throws → 404</text>
+  <!-- ===== legend ===== -->
+  <line
+     x1="48"
+     y1="1060"
+     x2="110"
+     y2="1060"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ahO2)"
+     id="line77" />
+  <text
+     x="122"
+     y="1064"
+     font-size="11"
+     id="text78">association / injection</text>
+  <line
+     x1="380"
+     y1="1060"
+     x2="442"
+     y2="1060"
+     class="ln"
+     stroke-width="1.5"
+     stroke-dasharray="6 5"
+     marker-end="url(#ahO2)"
+     id="line78" />
+  <text
+     x="454"
+     y="1064"
+     font-size="11"
+     id="text79">dependency / throws / creates</text>
+</svg>

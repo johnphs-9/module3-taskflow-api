@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1600 1230"
+   width="1600"
+   height="1230"
+   role="img"
+   aria-labelledby="t4 d4"
+   version="1.1"
+   id="svg43"
+   sodipodi:docname="taskflow-api-sequence-crud-1.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview43"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.00875"
+     inkscape:cx="800"
+     inkscape:cy="693.92813"
+     inkscape:window-width="2145"
+     inkscape:window-height="1195"
+     inkscape:window-x="357"
+     inkscape:window-y="55"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg43" />
+  <title
+     id="t4">TaskFlow API — sequence diagram: CRUD flows</title>
+  <desc
+     id="d4">Three CRUD scenarios. Create: POST /api/tasks validates the title (blank title yields 400 via the handler); the service creates the task in the repository, which assigns an id from its sequence, overriding any id in the body; 201 with the created task. Delete: DELETE /api/tasks/{id}; the repository reports whether the id existed — absent yields TaskNotFoundException and 404, otherwise 200 with an empty body. Dummy: POST /api/tasks/dummy adds five sample tasks without deduplication; 201 with an empty body.</desc>
+  <defs
+     id="defs2">
+    <marker
+       id="ah4"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 0 L 10 5 L 0 10 z"
+         fill="#1B211F"
+         id="path1" />
+    </marker>
+    <marker
+       id="ahO4"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="7"
+       markerHeight="7"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 0 L 10 5 L 0 10"
+         fill="none"
+         stroke="#1B211F"
+         stroke-width="1.6"
+         id="path2" />
+    </marker>
+  </defs>
+  <style
+     id="style2">
+    text{font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;fill:#1B211F}
+    .m{font-family:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace}
+    .ln{stroke:#1B211F;fill:none}
+    .life{stroke:#1B211F;fill:none;stroke-dasharray:2 5}
+    .ret{stroke:#1B211F;fill:none;stroke-dasharray:7 5}
+  </style>
+  <!-- page -->
+  <rect
+     x="0"
+     y="0"
+     width="1600"
+     height="1230"
+     fill="#FFFEFD"
+     id="rect2" />
+  <rect
+     x="0"
+     y="0"
+     width="14"
+     height="1230"
+     fill="#EDB86C"
+     id="rect3" />
+  <!-- header -->
+  <text
+     x="48"
+     y="56"
+     font-size="26px"
+     font-weight="600"
+     id="text3"
+     dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.99132603 0 0 0 0 0 0 0 0.99132591 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.99132591">TaskFlow API — CRUD flows: Create / Delete / Add Dummy Tasks</text>
+  <text
+     x="48"
+     y="84"
+     font-size="13px"
+     id="text4" />
+  <text
+     x="1552"
+     y="56"
+     font-size="12px"
+     text-anchor="end"
+     id="text5">NTU AI Engineering ·AIE-FT-03-Back End Development: Server-Side Programming</text>
+  <line
+     x1="48"
+     y1="104"
+     x2="1552"
+     y2="104"
+     class="ln"
+     stroke-width="1"
+     id="line5" />
+  <!-- ===== participants ===== -->
+  <rect
+     x="100"
+     y="130"
+     width="200"
+     height="56"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect5" />
+  <text
+     x="200"
+     y="154"
+     font-size="13"
+     font-weight="600"
+     text-anchor="middle"
+     id="text6">Client</text>
+  <text
+     x="200"
+     y="172"
+     font-size="10.5"
+     text-anchor="middle"
+     class="m"
+     id="text7">curl · Postman</text>
+  <rect
+     x="460"
+     y="130"
+     width="200"
+     height="56"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect7" />
+  <text
+     x="560"
+     y="154"
+     font-size="13"
+     font-weight="600"
+     text-anchor="middle"
+     id="text8">TaskController</text>
+  <text
+     x="560"
+     y="172"
+     font-size="10.5"
+     text-anchor="middle"
+     class="m"
+     id="text9">/api/tasks</text>
+  <rect
+     x="820"
+     y="130"
+     width="200"
+     height="56"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect9" />
+  <text
+     x="920"
+     y="154"
+     font-size="13"
+     font-weight="600"
+     text-anchor="middle"
+     id="text10">TaskService</text>
+  <text
+     x="920"
+     y="172"
+     font-size="10.5"
+     text-anchor="middle"
+     class="m"
+     id="text11">@Service</text>
+  <rect
+     x="1180"
+     y="130"
+     width="200"
+     height="56"
+     fill="#FFFEFD"
+     class="ln"
+     stroke-width="1.5"
+     id="rect11" />
+  <text
+     x="1280"
+     y="154"
+     font-size="13"
+     font-weight="600"
+     text-anchor="middle"
+     id="text12">TaskRepository</text>
+  <text
+     x="1280"
+     y="172"
+     font-size="10.5"
+     text-anchor="middle"
+     class="m"
+     id="text13">in-memory</text>
+  <!-- lifelines -->
+  <line
+     x1="200"
+     y1="186"
+     x2="200"
+     y2="1140"
+     class="life"
+     stroke-width="1"
+     id="line13" />
+  <line
+     x1="560"
+     y1="186"
+     x2="560"
+     y2="1140"
+     class="life"
+     stroke-width="1"
+     id="line14" />
+  <line
+     x1="920"
+     y1="186"
+     x2="920"
+     y2="1140"
+     class="life"
+     stroke-width="1"
+     id="line15" />
+  <line
+     x1="1280"
+     y1="186"
+     x2="1280"
+     y2="1140"
+     class="life"
+     stroke-width="1"
+     id="line16" />
+  <!-- ===== scenario 1: create ===== -->
+  <text
+     x="48"
+     y="215"
+     font-size="13"
+     font-weight="600"
+     id="text16">Scenario 1 — create a task (POST /api/tasks)</text>
+  <line
+     x1="48"
+     y1="228"
+     x2="1552"
+     y2="228"
+     class="ln"
+     stroke-width="1"
+     id="line17" />
+  <line
+     x1="200"
+     y1="250"
+     x2="560"
+     y2="250"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line18" />
+  <text
+     x="380"
+     y="238"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text18">POST /api/tasks · JSON body</text>
+  <rect
+     x="575"
+     y="262"
+     width="200"
+     height="30"
+     fill="#EDB86C"
+     stroke="#1B211F"
+     stroke-width="1"
+     id="rect18"
+     style="fill:#f4d7d7;fill-opacity:1" />
+  <text
+     x="675"
+     y="281"
+     font-size="10.5"
+     text-anchor="middle"
+     id="text19"
+     style="fill:#171c1a;fill-opacity:1">blank title → 400 via handler</text>
+  <line
+     x1="560"
+     y1="324"
+     x2="920"
+     y2="324"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line19" />
+  <text
+     x="740"
+     y="312"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text20">createTask(task)</text>
+  <line
+     x1="920"
+     y1="364"
+     x2="1280"
+     y2="364"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line20" />
+  <text
+     x="1100"
+     y="352"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text21">create(task) [synchronized]</text>
+  <line
+     x1="1280"
+     y1="404"
+     x2="920"
+     y2="404"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line21" />
+  <text
+     x="1100"
+     y="392"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text22">Task with assigned id (body id ignored)</text>
+  <line
+     x1="920"
+     y1="444"
+     x2="560"
+     y2="444"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line22" />
+  <text
+     x="740"
+     y="432"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text23">Task</text>
+  <line
+     x1="560"
+     y1="484"
+     x2="200"
+     y2="484"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line23" />
+  <text
+     x="380"
+     y="472"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text24">201 · created Task</text>
+  <!-- ===== scenario 2: delete ===== -->
+  <text
+     x="48"
+     y="540"
+     font-size="13"
+     font-weight="600"
+     id="text25">Scenario 2 — delete a task (DELETE /api/tasks/{id})</text>
+  <line
+     x1="48"
+     y1="552"
+     x2="1552"
+     y2="552"
+     class="ln"
+     stroke-width="1"
+     id="line25" />
+  <line
+     x1="200"
+     y1="580"
+     x2="560"
+     y2="580"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line26" />
+  <text
+     x="380"
+     y="568"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text26">DELETE /api/tasks/{id}</text>
+  <line
+     x1="560"
+     y1="620"
+     x2="920"
+     y2="620"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line27" />
+  <text
+     x="740"
+     y="608"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text27">deleteTask(id)</text>
+  <line
+     x1="920"
+     y1="660"
+     x2="1280"
+     y2="660"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line28" />
+  <text
+     x="1100"
+     y="648"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text28">deleteById(id) [synchronized]</text>
+  <line
+     x1="1280"
+     y1="700"
+     x2="920"
+     y2="700"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line29" />
+  <text
+     x="1100"
+     y="688"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text29">boolean — false if absent</text>
+  <rect
+     x="935"
+     y="712"
+     width="230"
+     height="40"
+     fill="#EDB86C"
+     stroke="#1B211F"
+     stroke-width="1"
+     id="rect29"
+     style="fill:#f4d7d7;fill-opacity:1" />
+  <text
+     x="1050"
+     y="728"
+     font-size="10.5"
+     text-anchor="middle"
+     id="text30"
+     style="fill:#171c1a;fill-opacity:1">false → TaskNotFoundException</text>
+  <text
+     x="1050"
+     y="744"
+     font-size="10.5"
+     text-anchor="middle"
+     id="text31"
+     style="fill:#171c1a;fill-opacity:1">→ 404 via handler</text>
+  <line
+     x1="920"
+     y1="784"
+     x2="560"
+     y2="784"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line31" />
+  <text
+     x="740"
+     y="772"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text32">(void)</text>
+  <line
+     x1="560"
+     y1="824"
+     x2="200"
+     y2="824"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line32" />
+  <text
+     x="380"
+     y="812"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text33">200 · empty body</text>
+  <!-- ===== scenario 3: dummy data ===== -->
+  <text
+     x="48"
+     y="880"
+     font-size="13"
+     font-weight="600"
+     id="text34">Scenario 3 — add dummy data (POST /api/tasks/dummy)</text>
+  <line
+     x1="48"
+     y1="892"
+     x2="1552"
+     y2="892"
+     class="ln"
+     stroke-width="1"
+     id="line34" />
+  <line
+     x1="200"
+     y1="920"
+     x2="560"
+     y2="920"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line35" />
+  <text
+     x="380"
+     y="908"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text35">POST /api/tasks/dummy</text>
+  <line
+     x1="560"
+     y1="960"
+     x2="920"
+     y2="960"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line36" />
+  <text
+     x="740"
+     y="948"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text36">addDummyData()</text>
+  <line
+     x1="920"
+     y1="1000"
+     x2="1280"
+     y2="1000"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line37" />
+  <text
+     x="1100"
+     y="988"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text37">create(sample task) × 5 [synchronized]</text>
+  <line
+     x1="1280"
+     y1="1040"
+     x2="920"
+     y2="1040"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line38" />
+  <text
+     x="1100"
+     y="1028"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text38">5 created Tasks (ids from nextId)</text>
+  <rect
+     x="935"
+     y="1052"
+     width="230"
+     height="30"
+     fill="#EDB86C"
+     stroke="#1B211F"
+     stroke-width="1"
+     id="rect38"
+     style="fill:#f4d7d7;fill-opacity:1" />
+  <text
+     x="1050"
+     y="1071"
+     font-size="10.5"
+     text-anchor="middle"
+     id="text39"
+     style="fill:#171c1a;fill-opacity:1">no dedup — each call adds 5 more</text>
+  <line
+     x1="560"
+     y1="1116"
+     x2="200"
+     y2="1116"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line39" />
+  <text
+     x="380"
+     y="1104"
+     font-size="11"
+     text-anchor="middle"
+     class="m"
+     id="text40">201 · empty body</text>
+  <!-- ===== legend ===== -->
+  <line
+     x1="48"
+     y1="1180"
+     x2="110"
+     y2="1180"
+     class="ln"
+     stroke-width="1.5"
+     marker-end="url(#ah4)"
+     id="line40" />
+  <text
+     x="122"
+     y="1184"
+     font-size="11"
+     id="text41">request</text>
+  <line
+     x1="200"
+     y1="1180"
+     x2="262"
+     y2="1180"
+     class="ret"
+     stroke-width="1.5"
+     marker-end="url(#ahO4)"
+     id="line41" />
+  <text
+     x="274"
+     y="1184"
+     font-size="11"
+     id="text42">return</text>
+  <rect
+     x="350"
+     y="1172"
+     width="16"
+     height="16"
+     fill="#EDB86C"
+     stroke="#1B211F"
+     stroke-width="1"
+     id="rect42"
+     style="fill:#f4d7d7;fill-opacity:1" />
+  <text
+     x="376"
+     y="1184"
+     font-size="11"
+     id="text43"
+     style="fill:#171c1a;fill-opacity:1">branch / failure / caveat</text>
+  <text
+     xml:space="preserve"
+     style="font-weight:500;font-size:13.3333px;font-family:'.Lucida Grande UI';-inkscape-font-specification:'.Lucida Grande UI Medium';writing-mode:lr-tb;direction:ltr;fill:#171c1a;fill-opacity:1"
+     x="60.470879"
+     y="90.210655"
+     id="text44"><tspan
+       sodipodi:role="line"
+       id="tspan43"></tspan></text>
+</svg>
