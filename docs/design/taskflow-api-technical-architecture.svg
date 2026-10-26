@@ -9,6 +9,9 @@
    id="svg99"
    sodipodi:docname="taskflow-api-technical-architecture.svg"
    inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   inkscape:export-filename="taskflow-api-technical-architecture.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -27,11 +30,11 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.228"
      inkscape:cx="750"
-     inkscape:cy="525.2443"
+     inkscape:cy="460.09772"
      inkscape:window-width="2429"
      inkscape:window-height="1099"
      inkscape:window-x="131"
-     inkscape:window-y="30"
+     inkscape:window-y="150"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg99" />
   <title
@@ -119,7 +122,7 @@
      y="58"
      font-size="12px"
      text-anchor="end"
-     id="text5">NTU AI Engineering · AIE-FT-03-Back End Development: Server-Side Programming</text>
+     id="text5">NTU AI Engineering · AIE-FT-03-Back End Development</text>
   <line
      x1="48"
      y1="108"
@@ -596,83 +599,100 @@
      width="680"
      height="310"
      fill="#02225E"
-     id="rect48" />
+     id="rect48"
+     style="fill:#f0f0c0;fill-opacity:1" />
   <text
      x="72"
      y="712"
-     font-size="11"
+     font-size="11px"
      font-weight="600"
      letter-spacing="1.2"
      class="at"
-     id="text49">RUNTIME CONFIGURATION</text>
+     id="text49"
+     style="fill:#1b211f;fill-opacity:1"><tspan
+       style="fill:#02225e;fill-opacity:1"
+       id="tspan1">RUNTIME CONFIGURATION</tspan></text>
   <text
      x="72"
      y="738"
      font-size="12"
      class="pt"
-     id="text50">application.properties — OpenRouter active; oMLX / Ollama alternatives commented out</text>
+     id="text50"
+     style="fill:#1b211f;fill-opacity:1">application.properties — OpenRouter active; oMLX / Ollama alternatives commented out</text>
   <text
      x="72"
      y="759"
      font-size="12"
      class="pt"
-     id="text51">Profiles — dev default (DEBUG logs) · prod (INFO) via SPRING_PROFILES_ACTIVE</text>
+     id="text51"
+     style="fill:#1b211f;fill-opacity:1">Profiles — dev default (DEBUG logs) · prod (INFO) via SPRING_PROFILES_ACTIVE</text>
   <text
      x="72"
      y="780"
      font-size="12"
      class="pt"
-     id="text52">OPENAI_API_KEY — from environment (.env via shell / VS Code launch); required at</text>
+     id="text52"
+     style="fill:#1b211f;fill-opacity:1">OPENAI_API_KEY — from environment (.env via shell / VS Code launch); required at</text>
   <text
      x="190"
      y="801"
      font-size="12px"
      class="pt"
-     id="text53">startup even for CRUD-only use</text>
+     id="text53"
+     style="fill:#1b211f;fill-opacity:1">startup even for CRUD-only use</text>
   <text
      x="72"
      y="822"
      font-size="12"
      class="pt"
-     id="text54">Build — Maven wrapper (JDK 21) → Spring Boot jar · run: ./mvnw spring-boot:run</text>
+     id="text54"
+     style="fill:#1b211f;fill-opacity:1">Build — Maven wrapper (JDK 21) → Spring Boot jar · run: ./mvnw spring-boot:run</text>
   <text
      x="72"
      y="843"
      font-size="12"
      class="pt"
-     id="text55">Tests — ./mvnw clean test: context load + summary behaviour, mocked ChatClient</text>
+     id="text55"
+     style="fill:#1b211f;fill-opacity:1">Tests — ./mvnw clean test: context load + summary behaviour, mocked ChatClient</text>
   <text
      x="72"
      y="871"
-     font-size="11"
+     font-size="11px"
      font-weight="600"
      letter-spacing="1.2"
      class="at"
-     id="text56">KNOWN CONSTRAINTS</text>
+     id="text56"
+     style="fill:#1b211f;fill-opacity:1"><tspan
+       style="fill:#02225e;fill-opacity:1"
+       id="tspan2">KNOWN CONSTRAINTS</tspan></text>
   <text
      x="72"
      y="897"
      font-size="12"
      class="pt"
-     id="text57">Storage — in-memory HashMap; all tasks lost on restart (no database)</text>
+     id="text57"
+     style="fill:#1b211f;fill-opacity:1">Storage — in-memory HashMap; all tasks lost on restart (no database)</text>
   <text
      x="72"
      y="918"
      font-size="12"
      class="pt"
-     id="text58">Concurrency — per-method synchronized; compound find→modify→save not atomic</text>
+     id="text58"
+     style="fill:#1b211f;fill-opacity:1">Concurrency — per-method synchronized; compound find→modify→save not atomic</text>
   <text
      x="72"
      y="939"
      font-size="12px"
      class="pt"
-     id="text59">Auth — none on API endpoints; AI provider access key required at startup</text>
+     id="text59"
+     style="fill:#1b211f;fill-opacity:1">Auth — none on API endpoints; AI provider access key required at startup</text>
   <text
      x="72"
      y="960"
      font-size="12"
      class="pt"
-     id="text60">AI output — unvalidated / unsanitised HTML; task titles sent to external provider</text>
+     id="text60"
+     style="fill:#1b211f;fill-opacity:1">AI output — unvalidated / unsanitised HTML; task titles sent to external provider</text>
   <!-- ===== bottom right: API contract ===== -->
   <rect
      x="760"
@@ -686,9 +706,11 @@
   <text
      x="784"
      y="708"
-     font-size="13"
+     font-size="13px"
      font-weight="600"
-     id="text61">REST API — application-level contract (no authentication)</text>
+     id="text61"><tspan
+       style="fill:#02225e;fill-opacity:1"
+       id="tspan3">REST API — application-level contract (no authentication)</tspan></text>
   <g
      class="m"
      font-size="11"

@@ -134,15 +134,16 @@ Use Postman to check the full API flow. Create two tasks, list them, retrieve on
 | Diagram | Description |
 | --- | --- |
 | [Technical architecture](docs/design/taskflow-api-technical-architecture.svg) | Shows the Spring Boot layers, in-memory storage, AI summary integration, configuration, API contract, and constraints. |
-| [CRUD sequence diagrams: create, delete, and dummy tasks](docs/design/taskflow-api-sequence-crud-1.svg) | Details the request flow and responses for creating and deleting tasks, and adding sample tasks. |
-| [Sequence diagram: update and AI summary](docs/design/taskflow-api-sequence-crud-2.svg) | Details the request flows for updating a task and generating an AI summary. |
+| [Sequence: CRUD Flows (1 of 3): Find all, find by ID, create](docs/design/taskflow-api-sequence-crud-1.svg) | Details the request flow and responses for finding and creating tasks. |
+| [Sequence: CRUD Flows (2 of 3): Update, mark as complete, add dummy data](docs/design/taskflow-api-sequence-crud-2.svg) | Details the request flow and responses for updating, mark task as complete, and adding sample tasks. |
+| [Sequence diagram: AI summary (3 of 3)](docs/design/taskflow-api-sequence-3.svg) | Details the request flows for sending task status to generate an  AI summary. |
 | [Class diagram](docs/design/taskflow-api-class-diagram.svg) | Shows the main application classes and their relationships. |
 
 ### TaskFlow API Architecture
 
 ![Architecture Diagram](docs/design/taskflow-api-technical-architecture.png)
 
-### TaskFlow Sequence Diagram
+### TaskFlow Sequence Diagram (selected)
 
 ![Sequence Diagram 1](docs/design/taskflow-api-sequence-crud-1.png)
 

@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1600"
+   height="1064"
+   viewBox="0 0 1600 1064"
+   version="1.1"
+   id="svg51"
+   sodipodi:docname="taskflow-api-sequence-3.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview51"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.8375"
+     inkscape:cx="800"
+     inkscape:cy="531.9403"
+     inkscape:window-width="1901"
+     inkscape:window-height="1032"
+     inkscape:window-x="0"
+     inkscape:window-y="184"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg51" />
+  <title
+     id="title1">TaskFlow API — Sequence: AI summary</title>
+  <desc
+     id="desc1">Sequence diagram of the GET /api/tasks/summary flow. The controller asks TaskService for all tasks, which reads the in-memory repository. If the list is empty the controller returns a static HTML summary without calling the model. Otherwise it computes verified statistics, builds a prompt treating titles as untrusted data, and calls the Spring AI ChatClient, which posts to the OpenRouter hosted model using the OPENAI_API_KEY. The model returns an HTML fragment; a null or blank result raises IllegalStateException and becomes a 500, otherwise the fragment is returned as 200. The generated HTML is not validated or sanitised.</desc>
+  <defs
+     id="defs2">
+    <style
+       id="style1">
+      svg { font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif; }
+      text { fill:#1A1B1C; }
+      .mono { font-family:'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace; }
+      .b { font-weight:600; }
+      .bb { font-weight:700; }
+      rect.technical-core { fill:#66ABFF; stroke:#1A1B1C; }
+      rect.technical-reference { fill:#F0F0C0; stroke:#1A1B1C; }
+      rect.technical-branch { fill:#F4D7D7; stroke:#1A1B1C; }
+      rect.technical-external { fill:#FCFCFC; stroke:#1A1B1C; stroke-dasharray:6 4; }
+      .ln { stroke:#1A1B1C; stroke-width:1.5; fill:none; }
+      .ln-dash { stroke:#1A1B1C; stroke-width:1.5; fill:none; stroke-dasharray:6 4; }
+      .boundary { stroke:#1A1B1C; stroke-width:1.5; fill:none; }
+      .lifeline { stroke:#555555; stroke-width:1; fill:none; stroke-dasharray:4 4; }
+      line.document-divider { stroke:#555555; stroke-width:1.5; fill:none; }
+    </style>
+    <marker
+       id="arrow"
+       viewBox="0 0 10 10"
+       refX="10"
+       refY="5"
+       markerWidth="8"
+       markerHeight="8"
+       orient="auto">
+      <path
+         d="M 0 0 L 10 5 L 0 10 z"
+         fill="#1A1B1C"
+         id="path1" />
+    </marker>
+    <marker
+       id="arrow-open"
+       viewBox="0 0 10 10"
+       refX="10"
+       refY="5"
+       markerWidth="8"
+       markerHeight="8"
+       orient="auto">
+      <path
+         d="M 0 0 L 10 5 L 0 10"
+         fill="none"
+         stroke="#1A1B1C"
+         stroke-width="1.5"
+         id="path2" />
+    </marker>
+  </defs>
+  <!-- Page background and decorative rail -->
+  <rect
+     x="0"
+     y="0"
+     width="1600"
+     height="1064"
+     fill="#FCFCFC"
+     id="rect2" />
+  <rect
+     x="0"
+     y="0"
+     width="16"
+     height="1064"
+     fill="#EDB86C"
+     id="rect3" />
+  <!-- Document header -->
+  <text
+     x="48"
+     y="54"
+     font-size="28"
+     class="bb"
+     id="text3">TaskFlow API — Sequence: AI Summary</text>
+  <text
+     x="48"
+     y="86"
+     font-size="16"
+     id="text4">GET /api/tasks/summary — verified stats to a hosted LLM</text>
+  <text
+     x="48"
+     y="112"
+     font-size="14"
+     id="text5">HTTP client → TaskController → TaskService → TaskRepository → Spring AI ChatClient → OpenRouter</text>
+  <line
+     class="document-divider"
+     x1="48"
+     y1="134"
+     x2="1552"
+     y2="134"
+     id="line6" />
+  <!-- Participant headers -->
+  <rect
+     class="technical-core"
+     x="44"
+     y="160"
+     width="228"
+     height="56"
+     stroke-width="1.5"
+     id="rect6" />
+  <text
+     x="158"
+     y="184"
+     font-size="16"
+     class="b"
+     text-anchor="middle"
+     id="text7">HTTP client</text>
+  <text
+     x="158"
+     y="206"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text8">external · browser</text>
+  <rect
+     class="technical-core"
+     x="298"
+     y="160"
+     width="228"
+     height="56"
+     stroke-width="1.5"
+     id="rect8" />
+  <text
+     x="412"
+     y="184"
+     font-size="16"
+     class="b"
+     text-anchor="middle"
+     id="text9">TaskController</text>
+  <text
+     x="412"
+     y="206"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text10">@RestController</text>
+  <rect
+     class="technical-core"
+     x="552"
+     y="160"
+     width="228"
+     height="56"
+     stroke-width="1.5"
+     id="rect10" />
+  <text
+     x="666"
+     y="184"
+     font-size="16"
+     class="b"
+     text-anchor="middle"
+     id="text11">TaskService</text>
+  <text
+     x="666"
+     y="206"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text12">@Service</text>
+  <rect
+     class="technical-core"
+     x="806"
+     y="160"
+     width="228"
+     height="56"
+     stroke-width="1.5"
+     id="rect12" />
+  <text
+     x="920"
+     y="184"
+     font-size="16"
+     class="b"
+     text-anchor="middle"
+     id="text13">TaskRepository</text>
+  <text
+     x="920"
+     y="206"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text14">@Repository</text>
+  <rect
+     class="technical-core"
+     x="1060"
+     y="160"
+     width="228"
+     height="56"
+     stroke-width="1.5"
+     id="rect14" />
+  <text
+     x="1174"
+     y="184"
+     font-size="16"
+     class="b"
+     text-anchor="middle"
+     id="text15">Spring AI ChatClient</text>
+  <text
+     x="1174"
+     y="206"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text16">spring-ai 2.0.0</text>
+  <rect
+     class="technical-external"
+     x="1314"
+     y="160"
+     width="228"
+     height="56"
+     stroke-width="1.5"
+     id="rect16" />
+  <text
+     x="1428"
+     y="184"
+     font-size="16"
+     class="b"
+     text-anchor="middle"
+     id="text17">OpenRouter</text>
+  <text
+     x="1428"
+     y="206"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text18">external · openrouter/free</text>
+  <!-- Lifelines -->
+  <line
+     class="lifeline"
+     x1="158"
+     y1="216"
+     x2="158"
+     y2="948"
+     id="line18" />
+  <line
+     class="lifeline"
+     x1="412"
+     y1="216"
+     x2="412"
+     y2="948"
+     id="line19" />
+  <line
+     class="lifeline"
+     x1="666"
+     y1="216"
+     x2="666"
+     y2="948"
+     id="line20" />
+  <line
+     class="lifeline"
+     x1="920"
+     y1="216"
+     x2="920"
+     y2="948"
+     id="line21" />
+  <line
+     class="lifeline"
+     x1="1174"
+     y1="216"
+     x2="1174"
+     y2="948"
+     id="line22" />
+  <line
+     class="lifeline"
+     x1="1428"
+     y1="216"
+     x2="1428"
+     y2="948"
+     id="line23" />
+  <!-- Fetch all tasks -->
+  <line
+     class="ln"
+     x1="158"
+     y1="252"
+     x2="412"
+     y2="252"
+     marker-end="url(#arrow)"
+     id="line24" />
+  <text
+     x="285"
+     y="238"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text24">GET /api/tasks/summary</text>
+  <line
+     class="ln"
+     x1="412"
+     y1="292"
+     x2="666"
+     y2="292"
+     marker-end="url(#arrow)"
+     id="line25" />
+  <text
+     x="539"
+     y="278"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text25">findAllTasks()</text>
+  <line
+     class="ln"
+     x1="666"
+     y1="332"
+     x2="920"
+     y2="332"
+     marker-end="url(#arrow)"
+     id="line26" />
+  <text
+     x="793"
+     y="318"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text26">findAll()</text>
+  <line
+     class="ln"
+     x1="920"
+     y1="372"
+     x2="666"
+     y2="372"
+     marker-end="url(#arrow-open)"
+     id="line27" />
+  <text
+     x="793"
+     y="358"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text27">List&lt;Task&gt; (copy)</text>
+  <line
+     class="ln"
+     x1="666"
+     y1="412"
+     x2="412"
+     y2="412"
+     marker-end="url(#arrow-open)"
+     id="line28" />
+  <text
+     x="539"
+     y="398"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text28">List&lt;Task&gt;</text>
+  <!-- alt frame: no tasks / tasks present -->
+  <rect
+     class="boundary"
+     x="158"
+     y="428"
+     width="1270"
+     height="496"
+     id="rect28" />
+  <rect
+     class="technical-core"
+     x="158"
+     y="428"
+     width="56"
+     height="24"
+     stroke-width="1"
+     id="rect29" />
+  <text
+     x="186"
+     y="445"
+     font-size="14"
+     class="b"
+     text-anchor="middle"
+     id="text29">alt</text>
+  <text
+     x="226"
+     y="445"
+     font-size="14"
+     class="mono"
+     id="text30">[no tasks]</text>
+  <path
+     d="M 412 476 H 482 V 504 H 412"
+     class="ln"
+     marker-end="url(#arrow)"
+     id="path30" />
+  <text
+     x="490"
+     y="494"
+     font-size="14"
+     class="mono"
+     id="text31">build static summary</text>
+  <line
+     class="ln"
+     x1="412"
+     y1="520"
+     x2="158"
+     y2="520"
+     marker-end="url(#arrow-open)"
+     id="line31" />
+  <text
+     x="285"
+     y="506"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text32">200 · static HTML summary</text>
+  <line
+     class="ln-dash"
+     x1="158"
+     y1="548"
+     x2="1428"
+     y2="548"
+     id="line32" />
+  <text
+     x="170"
+     y="542"
+     font-size="14"
+     class="mono"
+     id="text33">[tasks present]</text>
+  <path
+     d="M 412 572 H 482 V 600 H 412"
+     class="ln"
+     marker-end="url(#arrow)"
+     id="path33" />
+  <text
+     x="490"
+     y="590"
+     font-size="14"
+     class="mono"
+     id="text34">compute stats · build prompt</text>
+  <line
+     class="ln"
+     x1="412"
+     y1="624"
+     x2="1174"
+     y2="624"
+     marker-end="url(#arrow)"
+     id="line34" />
+  <text
+     x="793"
+     y="610"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text35">prompt().system().user().call()</text>
+  <rect
+     class="technical-reference"
+     x="1180"
+     y="596"
+     width="228"
+     height="40"
+     stroke-width="1"
+     id="rect35" />
+  <text
+     x="1294"
+     y="622"
+     font-size="14"
+     text-anchor="middle"
+     id="text36">key: OPENAI_API_KEY (env)</text>
+  <line
+     class="ln"
+     x1="1174"
+     y1="668"
+     x2="1428"
+     y2="668"
+     marker-end="url(#arrow)"
+     id="line36" />
+  <text
+     x="1301"
+     y="654"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text37">POST /v1/chat/completions</text>
+  <line
+     class="ln"
+     x1="1428"
+     y1="712"
+     x2="1174"
+     y2="712"
+     marker-end="url(#arrow-open)"
+     id="line37" />
+  <text
+     x="1301"
+     y="698"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text38">model text (HTML fragment)</text>
+  <line
+     class="ln"
+     x1="1174"
+     y1="756"
+     x2="412"
+     y2="756"
+     marker-end="url(#arrow-open)"
+     id="line38" />
+  <text
+     x="793"
+     y="742"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text39">String (HTML)</text>
+  <rect
+     class="technical-branch"
+     x="298"
+     y="768"
+     width="228"
+     height="50"
+     stroke-width="1"
+     id="rect39" />
+  <text
+     x="412"
+     y="790"
+     font-size="14"
+     text-anchor="middle"
+     id="text40">null / blank →</text>
+  <text
+     x="412"
+     y="810"
+     font-size="14"
+     text-anchor="middle"
+     id="text41">IllegalStateException → 500</text>
+  <line
+     class="ln"
+     x1="412"
+     y1="844"
+     x2="158"
+     y2="844"
+     marker-end="url(#arrow-open)"
+     id="line41" />
+  <text
+     x="285"
+     y="830"
+     font-size="14"
+     class="mono"
+     text-anchor="middle"
+     id="text42">200 · HTML fragment</text>
+  <rect
+     class="technical-branch"
+     x="44"
+     y="860"
+     width="228"
+     height="50"
+     stroke-width="1"
+     id="rect42" />
+  <text
+     x="158"
+     y="882"
+     font-size="14"
+     text-anchor="middle"
+     id="text43">HTML not validated</text>
+  <text
+     x="158"
+     y="902"
+     font-size="14"
+     text-anchor="middle"
+     id="text44">or sanitised</text>
+  <!-- Legend trailer -->
+  <line
+     class="document-divider"
+     x1="48"
+     y1="972"
+     x2="1552"
+     y2="972"
+     id="line44" />
+  <rect
+     class="technical-core"
+     x="48"
+     y="988"
+     width="16"
+     height="16"
+     stroke-width="1"
+     id="rect44" />
+  <text
+     x="72"
+     y="1001"
+     font-size="14"
+     id="text45">participant</text>
+  <line
+     class="ln"
+     x1="250"
+     y1="996"
+     x2="310"
+     y2="996"
+     marker-end="url(#arrow)"
+     id="line45" />
+  <text
+     x="320"
+     y="1001"
+     font-size="14"
+     id="text46">request</text>
+  <line
+     class="ln"
+     x1="450"
+     y1="996"
+     x2="510"
+     y2="996"
+     marker-end="url(#arrow-open)"
+     id="line46" />
+  <text
+     x="520"
+     y="1001"
+     font-size="14"
+     id="text47">return</text>
+  <line
+     class="ln-dash"
+     x1="660"
+     y1="996"
+     x2="720"
+     y2="996"
+     marker-end="url(#arrow)"
+     id="line47" />
+  <text
+     x="730"
+     y="1001"
+     font-size="14"
+     id="text48">exception</text>
+  <rect
+     class="technical-branch"
+     x="880"
+     y="988"
+     width="16"
+     height="16"
+     stroke-width="1"
+     id="rect48" />
+  <text
+     x="904"
+     y="1001"
+     font-size="14"
+     id="text49">error / caveat</text>
+  <rect
+     class="technical-reference"
+     x="1090"
+     y="988"
+     width="16"
+     height="16"
+     stroke-width="1"
+     id="rect49" />
+  <text
+     x="1114"
+     y="1001"
+     font-size="14"
+     id="text50">config note</text>
+  <rect
+     class="technical-external"
+     x="1300"
+     y="988"
+     width="16"
+     height="16"
+     stroke-width="1"
+     id="rect50" />
+  <text
+     x="1324"
+     y="1001"
+     font-size="14"
+     id="text51">external system</text>
+</svg>
